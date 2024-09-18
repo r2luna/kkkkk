@@ -12,7 +12,7 @@ class ProposalSeeder extends Seeder
     {
         Project::all()
             ->each(
-                fn(Project $p) => Proposal::factory()->count(rand(1, 10))->create(['project_id' => $p->id])
+                fn (Project $p) => Proposal::factory()->count(rand(1, 10))->create(['project_id' => $p->id])
             );
     }
 }

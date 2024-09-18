@@ -15,7 +15,7 @@ class ProposalFactory extends Factory
     public function definition(): array
     {
         return [
-            'hours' => $this->faker->randomNumber(),
+            'hours' => $this->faker->numberBetween(1, 48),
             'user_id' => User::factory(),
             'project_id' => Project::factory(),
 

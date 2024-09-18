@@ -17,7 +17,7 @@ class ProjectFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => 'Project '. str(fake()->unique()->word)->title() . ' ' .fake()->numberBetween(1, 40),
+            'name' => 'Project '.str(fake()->unique()->word)->title().' '.fake()->numberBetween(1, 40),
             'description' => fake()->sentence,
             'ends_at' => fake()->dateTimeBetween('now', '+1 year'),
             'created_at' => now(),

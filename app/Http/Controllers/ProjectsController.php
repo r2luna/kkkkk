@@ -3,23 +3,27 @@
 namespace App\Http\Controllers;
 
 use App\Models\Project;
-use Illuminate\Http\Request;
 
 class ProjectsController extends Controller
 {
     public function index()
     {
-        return view('projects.index',[
+        return view('projects.index', [
             'projects' => Project::query()
                 ->withCount('proposals')
                 ->latest('ends_at')
-                ->orderBy('name')
-                ->get()
+                ->orderByDesc('hours')
+                ->get(),
         ]);
     }
 
     public function show(Project $project)
     {
-        return view('projects.show', compact('project'));
+        $project->loadCount('proposals');
+
+        return view('projects.show', [
+            'project' => $project,
+            'proposals' => $project->proposals()->with('user')->orderBy('hours')->get(),
+        ]);
     }
 }
